@@ -1,0 +1,10 @@
+name: NMSUtils
+version: ${project.version}
+main: acrylic.nmsutils.NMSUtils
+api-version: 1.8
+authors: [ Acrylic ]
+description: NMS Utilities.
+commands:
+  cmd:
+    usage: /<command>
+    description: test.
