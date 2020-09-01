@@ -4,6 +4,9 @@ import lombok.Getter;
 import net.minecraft.server.v1_8_R3.NBTBase;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagList;
+import org.bukkit.Bukkit;
+
+import java.util.Set;
 
 @Getter
 public class NBTCompound {
@@ -103,6 +106,9 @@ public class NBTCompound {
         return compound.get(key);
     }
 
+    public String getString(String key) {
+        return compound.getString(key);
+    }
 
     public byte getByte(String key) {
         return compound.getByte(key);
@@ -140,6 +146,13 @@ public class NBTCompound {
         NBTBase list = compound.get(key);
         if (list == null) list = new NBTTagList();
         return (list instanceof NBTTagList) ? (NBTTagList) list : null;
+    }
+
+    public boolean hasKey(String key) {
+        return compound.hasKey(key);
+    }
+    public Set<String> getKeys() {
+        return compound.c();
     }
 
 

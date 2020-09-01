@@ -1,5 +1,7 @@
 package acrylic.nmsutils.commands;
 
+import acrylic.nmsutils.NBTAPI.NBTItem;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
