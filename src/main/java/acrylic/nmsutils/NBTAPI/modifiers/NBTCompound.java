@@ -28,8 +28,11 @@ public class NBTCompound {
         this.compoundName = null;
     }
 
-    public NBTCompound(NBTTagCompound compound, String compoundName, NBTCompound parent) {
-        if (compound == null) compound = new NBTTagCompound();
+    protected NBTCompound(NBTTagCompound compound, String compoundName, NBTCompound parent) {
+        if (compound == null || compound.isEmpty()) {
+            compound = new NBTTagCompound();
+            parent.set(compoundName,compound);
+        }
         this.compound = compound;
         this.parent = parent;
         this.compoundName = compoundName;
@@ -40,10 +43,12 @@ public class NBTCompound {
     }
 
     public NBTCompound buildCompound() {
-        if (parent != null && compoundName != null) {
-            parent.set(compoundName,this);
-            return parent;
-        }
+        if (parent != null && compoundName != null) return parent;
+        return this;
+    }
+
+    public NBTCompound removeKey(String key) {
+        compound.remove(key);
         return this;
     }
 
@@ -151,6 +156,7 @@ public class NBTCompound {
     public boolean hasKey(String key) {
         return compound.hasKey(key);
     }
+
     public Set<String> getKeys() {
         return compound.c();
     }

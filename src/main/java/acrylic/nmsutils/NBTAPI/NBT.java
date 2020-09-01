@@ -10,7 +10,7 @@ public abstract class NBT {
     private NBTCompound compound;
 
     public void setMainCompound(NBTTagCompound nbtTagCompound) {
-        compound = new NBTCompound(nbtTagCompound,null,null);
+        compound = new NBTCompound(nbtTagCompound);
     }
 
 }
