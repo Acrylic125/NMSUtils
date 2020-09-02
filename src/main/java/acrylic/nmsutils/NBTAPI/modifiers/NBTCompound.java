@@ -28,8 +28,8 @@ public class NBTCompound {
         this.compoundName = null;
     }
 
-    protected NBTCompound(NBTTagCompound compound, String compoundName, NBTCompound parent) {
-        if (compound == null || compound.isEmpty()) {
+    protected NBTCompound(NBTTagCompound compound, String compoundName, NBTCompound parent, boolean createNew) {
+        if (createNew && (compound == null || compound.isEmpty())) {
             compound = new NBTTagCompound();
             parent.set(compoundName,compound);
         }
@@ -39,7 +39,15 @@ public class NBTCompound {
     }
 
     public NBTCompound getCompound(String compound) {
-        return new NBTCompound(this.compound.getCompound(compound), compound,this);
+        return new NBTCompound(this.compound.getCompound(compound), compound,this,true);
+    }
+
+    /**
+     * Use this if you do not want to recreate the compound if the compound does
+     * not already exist.
+     */
+    public NBTCompound getCompoundIfExist(String compound) {
+        return new NBTCompound(this.compound.getCompound(compound), compound,this,false);
     }
 
     public NBTCompound buildCompound() {
