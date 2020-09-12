@@ -1,4 +1,4 @@
-package acrylic.nmsutils.AcrylicMirror;
+package acrylic.nmsutils.acrylicmirror;
 
 
 import acrylic.nmsutils.NMSEntity.NMSEntityShow;

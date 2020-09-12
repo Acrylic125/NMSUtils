@@ -169,5 +169,9 @@ public class NBTCompound {
         return compound.c();
     }
 
+    @Override
+    public String toString() {
+        return "\nParent : " + parent + "\nCurrent : " + compound + "\n";
+    }
 
 }

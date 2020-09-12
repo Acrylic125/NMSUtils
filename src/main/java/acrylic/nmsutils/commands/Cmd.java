@@ -1,5 +1,6 @@
 package acrylic.nmsutils.commands;
 
+import acrylic.nmsaddons.items.ItemIdentifierUtils;
 import acrylic.nmsutils.NBTAPI.NBTItem;
 import acrylic.nmsutils.NBTAPI.modifiers.NBTCompound;
 import acrylic.nmsutils.NMSParticle.NMSParticle;
@@ -19,10 +20,6 @@ public class Cmd implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
 
-        NMSParticle nmsParticle = new NMSParticle(EnumParticle.FLAME,p.getLocation());
-        nmsParticle.setAmount(100).setSpeed(0.1f).build();
-        PacketManager.send(p,nmsParticle.getPacket());
-
-        return true;
+         return true;
     }
 }
