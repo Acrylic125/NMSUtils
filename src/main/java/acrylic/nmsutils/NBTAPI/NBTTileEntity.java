@@ -1,23 +1,34 @@
 package acrylic.nmsutils.NBTAPI;
 
 import acrylic.nmsutils.NBTAPI.converter.Converter;
+import acrylic.nmsutils.NBTAPI.modifiers.NBTCompound;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.TileEntity;
+import org.bukkit.block.Block;
 
 public class NBTTileEntity extends NBT {
 
-    private final TileEntity tileEntity;
+    private TileEntity tileEntity;
+    private final Block block;
 
-    public NBTTileEntity(org.bukkit.block.Block block) {
-        this.tileEntity = Converter.getCraftWorld(block.getWorld()).getTileEntityAt(block.getX(),block.getY(),block.getZ());
-        NBTTagCompound compound = new NBTTagCompound();
-        tileEntity.b(compound);
-        super.setMainCompound(compound);
+    public NBTTileEntity(Block block) {
+        this.block = block;
     }
 
     public void update() {
-        tileEntity.a(super.getCompound().getCompound());
+        if (tileEntity == null) return;
+        tileEntity.a(getCompound().getCompound());
         tileEntity.update();
     }
 
+    @Override
+    public NBTCompound getCompound() {
+        if (compound == null) {
+            this.tileEntity = Converter.getCraftWorld(block.getWorld()).getTileEntityAt(block.getX(),block.getY(),block.getZ());
+            NBTTagCompound compound = new NBTTagCompound();
+            tileEntity.b(compound);
+            super.setMainCompound(compound);
+        }
+        return compound;
+    }
 }

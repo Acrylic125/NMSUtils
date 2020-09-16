@@ -5,11 +5,14 @@ import acrylic.nmsutils.NBTAPI.modifiers.NBTCompound;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.UUID;
+
 public class ItemIdentifierUtils {
 
     private static final String ITEM_MAIN_COMPOUND = "item";
     private static final String IDENTIFIER_TAG = "id";
     private static final String SUBIDENTIFIER_TAG = "subid";
+    private static final String PERSONAL_TAG = "pid";
 
     private final NBTItem nbtItem;
     private final NBTCompound compound;
@@ -48,6 +51,15 @@ public class ItemIdentifierUtils {
     public ItemIdentifierUtils setSubIdentifier(String subIdentifier) {
         getCompound().set(SUBIDENTIFIER_TAG,subIdentifier);
         return this;
+    }
+
+    public ItemIdentifierUtils setPersonalisedTag() {
+        getCompound().set(PERSONAL_TAG, UUID.randomUUID() + "");
+        return this;
+    }
+
+    public String getPersonalisedTag() {
+        return getCompound().getString(PERSONAL_TAG);
     }
 
     public ItemStack getItem() {
