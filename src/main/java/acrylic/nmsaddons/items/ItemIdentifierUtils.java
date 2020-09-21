@@ -13,6 +13,7 @@ public class ItemIdentifierUtils {
     private static final String IDENTIFIER_TAG = "id";
     private static final String SUBIDENTIFIER_TAG = "subid";
     private static final String PERSONAL_TAG = "pid";
+    private static final String TIME_TAG = "time";
 
     private final NBTItem nbtItem;
     private final NBTCompound compound;
@@ -55,7 +56,12 @@ public class ItemIdentifierUtils {
 
     public ItemIdentifierUtils setPersonalisedTag() {
         getCompound().set(PERSONAL_TAG, UUID.randomUUID() + "");
+        getCompound().set(TIME_TAG, System.currentTimeMillis());
         return this;
+    }
+
+    public long getTimeTag() {
+        return getCompound().getLong(TIME_TAG);
     }
 
     public String getPersonalisedTag() {
