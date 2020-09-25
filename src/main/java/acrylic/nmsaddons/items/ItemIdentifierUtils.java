@@ -2,7 +2,6 @@ package acrylic.nmsaddons.items;
 
 import acrylic.nmsutils.NBTAPI.NBTItem;
 import acrylic.nmsutils.NBTAPI.modifiers.NBTCompound;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
