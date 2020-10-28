@@ -6,6 +6,7 @@ import acrylic.nmsutils.json.AbstractJSON;
 import acrylic.nmsutils.json.JSON;
 import acrylic.nmsutils.json.JSONComponent;
 import com.acrylic.version_latest.Messages.ChatUtils;
+import lombok.SneakyThrows;
 import net.md_5.bungee.chat.ComponentSerializer;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
@@ -17,14 +18,10 @@ import org.bukkit.entity.Player;
 
 public class Cmd implements CommandExecutor {
 
+    @SneakyThrows
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player p = (Player) commandSender;
-        new JSON().append(JSONComponent.of("Hello").item(p.getItemInHand()))
-                .append(JSONComponent.of(" LOL").suggestCommand("/kill ").subText("&7Click to kill."))
-                .append(JSONComponent.of(" Idiot"))
-                .append(JSONComponent.of(" &6&lMe! "))
-                .send(p);
         return true;
     }
 }

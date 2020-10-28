@@ -1,5 +1,6 @@
 package acrylic.nmsutils.json;
 
+import com.acrylic.version_latest.Items.Utils.ItemUtils;
 import com.acrylic.version_latest.Messages.ChatUtils;
 import net.md_5.bungee.api.chat.*;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -15,7 +16,7 @@ public final class JSONComponent implements AbstractJSONComponent {
     }
 
     private JSONComponent(String text) {
-        textComponent = new TextComponent(ChatUtils.get(text));
+        textComponent = new TextComponent(TextComponent.fromLegacyText((ChatUtils.get(text))));
     }
 
     @Override
@@ -47,6 +48,9 @@ public final class JSONComponent implements AbstractJSONComponent {
 
     @Override
     public AbstractJSONComponent item(ItemStack item) {
+        if (ItemUtils.isAir(item)) {
+            return this;
+        }
         net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(item);
         net.minecraft.server.v1_8_R3.NBTTagCompound compound = new NBTTagCompound();
         nmsItemStack.save(compound);
